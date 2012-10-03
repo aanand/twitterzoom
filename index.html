@@ -20,9 +20,21 @@
 
   <body>
     <div class="drop-target">Drop an image file here.</div>
+
+    <form class="controls">
+      <label>Canvas width</label>        <input data-bind="value: canvasW, valueUpdate: 'afterkeydown'" type="text" />
+      <label>Canvas height</label>       <input data-bind="value: canvasH, valueUpdate: 'afterkeydown'" type="text" />
+      <label>Starting width</label>      <input data-bind="value: startW,  valueUpdate: 'afterkeydown'" type="text" />
+      <label>Starting height</label>     <input data-bind="value: startH,  valueUpdate: 'afterkeydown'" type="text" />
+      <label>Starting X</label>          <input data-bind="value: startX,  valueUpdate: 'afterkeydown'" type="text" />
+      <label>Starting Y</label>          <input data-bind="value: startY,  valueUpdate: 'afterkeydown'" type="text" />
+      <label>Step</label>                <input data-bind="value: step,    valueUpdate: 'afterkeydown'" type="text" />
+    </form>
+
     <div class="canvas-wrapper"></div>
 
     <script src="jquery.js"></script>
+    <script src="knockout.js"></script>
     <script src="trippyzoom.js"></script>
   </body>
 </html>

@@ -1,50 +1,69 @@
 init = ->
   dropper = new ImageDropper($('.drop-target'))
-  zoomer  = new Zoomer($('.canvas-wrapper'))
+  options = new ZoomerOptions($('.controls'))
+  zoomer  = new Zoomer($('.canvas-wrapper'), options)
 
   dropper.onImageDropped = (img) ->
-    zoomer.setImage(img)
+    options.image(img)
+
+class ZoomerOptions
+  constructor: (controls) ->
+    @canvasW = ko.observable('1200')
+    @canvasH = ko.observable('600')
+    @startW  = ko.observable('168')
+    @startH  = ko.observable('168')
+    @startX  = ko.observable('')
+    @startY  = ko.observable('')
+    @step    = ko.observable('50')
+    @image   = ko.observable()
+
+    ko.applyBindings(this, $(controls).get(0))
 
 class Zoomer
-  constructor: (wrapper) ->
+  constructor: (wrapper, options) ->
     @wrapper = wrapper
-    @width   = 1200
-    @height  = 600
-    @step    = 50
+    @options = options
 
-  initCanvas: ->
-    return if @canvas?
+    observables = "canvasW canvasH startW startH startX startY step image".split(/\s+/)
+    for property in observables
+      options[property].subscribe => @render()
+
+  render: ->
+    img = @options.image()
+    return unless img?
 
     @canvas = $('<canvas/>')[0]
-    @canvas.width  = @width
-    @canvas.height = @height
+    @canvas.width  = @getCanvasW()
+    @canvas.height = @getCanvasH()
     @wrapper.empty().append(@canvas)
 
-  setImage: (img) ->
-    @initCanvas()
     ctx = @canvas.getContext('2d')
 
     for [x, y, w, h] in @getLayers()
       ctx.drawImage(img, x, y, w, h)
 
   getLayers: ->
+    [maxW, maxH, step] = [@getCanvasW(), @getCanvasH(), @getStep()]
     [x, y, w, h] = [@getStartX(), @getStartY(), @getStartW(), @getStartH()]
     layers = [[x, y, w, h]]
 
-    while w < @width or h < @height
-      x -= @step
-      y -= @step
-      w += @step*2
-      h += @step*2
+    while w < maxW or h < maxH
+      x -= step
+      y -= step
+      w += step*2
+      h += step*2
 
       layers.unshift([x, y, w, h])
 
     layers
 
-  getStartW: -> @startW ? 168
-  getStartH: -> @startH ? 168
-  getStartX: -> @startX ? (@width/2 - @getStartW()/2)
-  getStartY: -> @startY ? (@height/2 - @getStartH()/2)
+  getCanvasW: -> window.parseInt(@options.canvasW())
+  getCanvasH: -> window.parseInt(@options.canvasH())
+  getStartW:  -> window.parseInt(@options.startW())
+  getStartH:  -> window.parseInt(@options.startH())
+  getStartX:  -> if @options.startX() then window.parseInt(@options.startX()) else (@getCanvasW()/2 - @getStartW()/2)
+  getStartY:  -> if @options.startY() then window.parseInt(@options.startY()) else (@getCanvasH()/2 - @getStartH()/2)
+  getStep:    -> window.parseInt(@options.step())
 
 class ImageDropper
   constructor: (target) ->
