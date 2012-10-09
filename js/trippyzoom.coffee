@@ -47,7 +47,7 @@ class Zoomer
     [x, y, w, h] = [@getStartX(), @getStartY(), @getStartW(), @getStartH()]
     layers = [[x, y, w, h]]
 
-    while w < maxW or h < maxH
+    while x > 0 or y > 0 or x+w < maxW or y+h < maxH
       x -= step
       y -= step
       w += step*2

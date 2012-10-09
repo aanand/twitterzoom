@@ -71,7 +71,7 @@
       _ref = [this.getCanvasW(), this.getCanvasH(), this.getStep()], maxW = _ref[0], maxH = _ref[1], step = _ref[2];
       _ref1 = [this.getStartX(), this.getStartY(), this.getStartW(), this.getStartH()], x = _ref1[0], y = _ref1[1], w = _ref1[2], h = _ref1[3];
       layers = [[x, y, w, h]];
-      while (w < maxW || h < maxH) {
+      while (x > 0 || y > 0 || x + w < maxW || y + h < maxH) {
         x -= step;
         y -= step;
         w += step * 2;
