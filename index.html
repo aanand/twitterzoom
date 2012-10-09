@@ -3,35 +3,67 @@
   <head>
     <title>Trippy Zoom Generator</title>
 
-    <style>
-      .drop-target {
-        width: 300px;
-        padding: 130px 0;
-        border: 3px dotted #aaa;
-        border-radius: 10px;
-        text-align: center;
-      }
-
-      .drop-target.dragover {
-        background: yellow;
-      }
-    </style>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/trippyzoom.css">
   </head>
 
   <body>
-    <div class="drop-target">Drop an image file here.</div>
+    <div class="container">
+      <div class="row">
+        <div class="span4">
+          <div class="drop-target">Drop an image file here.</div>
+        </div>
 
-    <form class="controls">
-      <label>Canvas width</label>        <input data-bind="value: canvasW, valueUpdate: 'afterkeydown'" type="text" />
-      <label>Canvas height</label>       <input data-bind="value: canvasH, valueUpdate: 'afterkeydown'" type="text" />
-      <label>Starting width</label>      <input data-bind="value: startW,  valueUpdate: 'afterkeydown'" type="text" />
-      <label>Starting height</label>     <input data-bind="value: startH,  valueUpdate: 'afterkeydown'" type="text" />
-      <label>Starting X</label>          <input data-bind="value: startX,  valueUpdate: 'afterkeydown'" type="text" />
-      <label>Starting Y</label>          <input data-bind="value: startY,  valueUpdate: 'afterkeydown'" type="text" />
-      <label>Step</label>                <input data-bind="value: step,    valueUpdate: 'afterkeydown'" type="text" />
-    </form>
+        <div class="span8 controls">
+          <div class="row">
+            <form class="span4 form-horizontal">
+              <div class="control-group">
+                <label class="control-label">Canvas width</label>
+                <div class="controls"><input data-bind="value: canvasW, valueUpdate: 'afterkeydown'" type="text" class="input-mini" /></div>
+              </div>
 
-    <div class="canvas-wrapper"></div>
+              <div class="control-group">
+                <label class="control-label">Canvas height</label>
+                <div class="controls"><input data-bind="value: canvasH, valueUpdate: 'afterkeydown'" type="text" class="input-mini" /></div>
+              </div>
+
+              <div class="control-group">
+                <label class="control-label">Starting width</label>
+                <div class="controls"><input data-bind="value: startW,  valueUpdate: 'afterkeydown'" type="text" class="input-mini" /></div>
+              </div>
+
+              <div class="control-group">
+                <label class="control-label">Starting height</label>
+                <div class="controls"><input data-bind="value: startH,  valueUpdate: 'afterkeydown'" type="text" class="input-mini" /></div>
+              </div>
+            </form>
+
+            <form class="span4 form-horizontal">
+              <div class="control-group">
+                <label class="control-label">Starting X</label>
+                <div class="controls"><input data-bind="value: startX,  valueUpdate: 'afterkeydown'" type="text" class="input-mini" /></div>
+              </div>
+
+              <div class="control-group">
+                <label class="control-label">Starting Y</label>
+                <div class="controls"><input data-bind="value: startY,  valueUpdate: 'afterkeydown'" type="text" class="input-mini" /></div>
+              </div>
+
+              <div class="control-group">
+                <label class="control-label">Step</label>
+                <div class="controls"><input data-bind="value: step,    valueUpdate: 'afterkeydown'" type="text" class="input-mini" /></div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="span12">
+          <div class="canvas-wrapper"></div>
+        </div>
+      </div>
+    </div>
 
     <script src="js/jquery.js"></script>
     <script src="js/knockout.js"></script>

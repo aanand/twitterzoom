@@ -15,8 +15,8 @@
   ZoomerOptions = (function() {
 
     function ZoomerOptions(controls) {
-      this.canvasW = ko.observable('1200');
-      this.canvasH = ko.observable('600');
+      this.canvasW = ko.observable('940');
+      this.canvasH = ko.observable('470');
       this.startW = ko.observable('168');
       this.startH = ko.observable('168');
       this.startX = ko.observable('');

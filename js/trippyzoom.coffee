@@ -8,8 +8,8 @@ init = ->
 
 class ZoomerOptions
   constructor: (controls) ->
-    @canvasW = ko.observable('1200')
-    @canvasH = ko.observable('600')
+    @canvasW = ko.observable('940')
+    @canvasH = ko.observable('470')
     @startW  = ko.observable('168')
     @startH  = ko.observable('168')
     @startX  = ko.observable('')
