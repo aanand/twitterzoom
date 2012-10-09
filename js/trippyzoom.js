@@ -18,9 +18,9 @@
       var _this = this;
       this.element = $(element);
       this.canvasW = ko.observable('940');
-      this.canvasH = ko.observable('470');
-      this.startW = ko.observable('168');
-      this.startH = ko.observable('168');
+      this.canvasH = ko.observable('500');
+      this.startW = ko.observable('200');
+      this.startH = ko.observable('200');
       this.startX = ko.observable('');
       this.startY = ko.observable('');
       this.step = ko.observable('50');

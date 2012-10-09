@@ -11,9 +11,9 @@ class ZoomerOptions
     @element = $(element)
 
     @canvasW = ko.observable('940')
-    @canvasH = ko.observable('470')
-    @startW  = ko.observable('168')
-    @startH  = ko.observable('168')
+    @canvasH = ko.observable('500')
+    @startW  = ko.observable('200')
+    @startH  = ko.observable('200')
     @startX  = ko.observable('')
     @startY  = ko.observable('')
     @step    = ko.observable('50')
