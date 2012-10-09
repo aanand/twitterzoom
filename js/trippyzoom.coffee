@@ -7,7 +7,9 @@ init = ->
     options.image(img)
 
 class ZoomerOptions
-  constructor: (controls) ->
+  constructor: (element) ->
+    @element = $(element)
+
     @canvasW = ko.observable('940')
     @canvasH = ko.observable('470')
     @startW  = ko.observable('168')
@@ -17,7 +19,18 @@ class ZoomerOptions
     @step    = ko.observable('50')
     @image   = ko.observable()
 
-    ko.applyBindings(this, $(controls).get(0))
+    ko.applyBindings(this, @element.get(0))
+
+    @downloadButton = @element.find('button.download-image')
+    @image.subscribe => @updateDownloadButton()
+    @updateDownloadButton()
+
+  updateDownloadButton: ->
+    enable = @image()?
+
+    @downloadButton
+      .attr('disabled', !enable)
+      .toggleClass('btn-primary', enable)
 
 class Zoomer
   constructor: (wrapper, options) ->
@@ -27,6 +40,8 @@ class Zoomer
     observables = "canvasW canvasH startW startH startX startY step image".split(/\s+/)
     for property in observables
       options[property].subscribe => @render()
+
+    options.downloadButton.click => @download()
 
   render: ->
     img = @options.image()
@@ -41,6 +56,9 @@ class Zoomer
 
     for [x, y, w, h] in @getLayers()
       ctx.drawImage(img, x, y, w, h)
+
+  download: ->
+    window.open(@canvas.toDataURL())
 
   getLayers: ->
     [maxW, maxH, step] = [@getCanvasW(), @getCanvasH(), @getStep()]

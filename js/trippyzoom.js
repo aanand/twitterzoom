@@ -14,7 +14,9 @@
 
   ZoomerOptions = (function() {
 
-    function ZoomerOptions(controls) {
+    function ZoomerOptions(element) {
+      var _this = this;
+      this.element = $(element);
       this.canvasW = ko.observable('940');
       this.canvasH = ko.observable('470');
       this.startW = ko.observable('168');
@@ -23,8 +25,19 @@
       this.startY = ko.observable('');
       this.step = ko.observable('50');
       this.image = ko.observable();
-      ko.applyBindings(this, $(controls).get(0));
+      ko.applyBindings(this, this.element.get(0));
+      this.downloadButton = this.element.find('button.download-image');
+      this.image.subscribe(function() {
+        return _this.updateDownloadButton();
+      });
+      this.updateDownloadButton();
     }
+
+    ZoomerOptions.prototype.updateDownloadButton = function() {
+      var enable;
+      enable = this.image() != null;
+      return this.downloadButton.attr('disabled', !enable).toggleClass('btn-primary', enable);
+    };
 
     return ZoomerOptions;
 
@@ -44,6 +57,9 @@
           return _this.render();
         });
       }
+      options.downloadButton.click(function() {
+        return _this.download();
+      });
     }
 
     Zoomer.prototype.render = function() {
@@ -64,6 +80,10 @@
         _results.push(ctx.drawImage(img, x, y, w, h));
       }
       return _results;
+    };
+
+    Zoomer.prototype.download = function() {
+      return window.open(this.canvas.toDataURL());
     };
 
     Zoomer.prototype.getLayers = function() {
