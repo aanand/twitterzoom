@@ -1,0 +1,1 @@
+coffee: coffee -cwo js js/*.coffee
