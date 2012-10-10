@@ -1,18 +1,14 @@
-.container {
-  padding-top: 50px;
-}
-
 .drop-target {
   margin: auto;
   width: 250px;
   padding: 80px 0;
-  border: 3px dotted #aaa;
+  border: 3px dotted #ddd;
   border-radius: 10px;
   text-align: center;
 }
 
 .drop-target.dragover {
-  background: yellow;
+  background: #eee;
 }
 
 .canvas-wrapper canvas {
