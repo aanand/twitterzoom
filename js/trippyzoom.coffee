@@ -21,7 +21,7 @@ class ZoomerOptions
 
     ko.applyBindings(this, @element.get(0))
 
-    @downloadButton = @element.find('button.download-image')
+    @downloadButton = $('.download-image')
     @image.subscribe => @updateDownloadButton()
     @updateDownloadButton()
 

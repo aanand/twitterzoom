@@ -26,7 +26,7 @@
       this.step = ko.observable('24');
       this.image = ko.observable();
       ko.applyBindings(this, this.element.get(0));
-      this.downloadButton = this.element.find('button.download-image');
+      this.downloadButton = $('.download-image');
       this.image.subscribe(function() {
         return _this.updateDownloadButton();
       });

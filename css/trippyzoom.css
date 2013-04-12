@@ -11,6 +11,16 @@
   background: #eee;
 }
 
+.download-wrapper {
+  margin-top: 10px;
+  text-align: right;
+}
+
+.canvas-wrapper {
+  min-height: 260px;
+  text-align: center;
+}
+
 .canvas-wrapper canvas {
   max-width: 100%;
 }
