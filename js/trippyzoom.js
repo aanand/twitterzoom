@@ -17,13 +17,13 @@
     function ZoomerOptions(element) {
       var _this = this;
       this.element = $(element);
-      this.canvasW = ko.observable('940');
-      this.canvasH = ko.observable('500');
-      this.startW = ko.observable('200');
-      this.startH = ko.observable('200');
-      this.startX = ko.observable('');
-      this.startY = ko.observable('');
-      this.step = ko.observable('50');
+      this.canvasW = ko.observable('520');
+      this.canvasH = ko.observable('260');
+      this.startW = ko.observable('73');
+      this.startH = ko.observable('73');
+      this.startX = ko.observable('223');
+      this.startY = ko.observable('24');
+      this.step = ko.observable('24');
       this.image = ko.observable();
       ko.applyBindings(this, this.element.get(0));
       this.downloadButton = this.element.find('button.download-image');

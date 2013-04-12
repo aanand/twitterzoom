@@ -10,13 +10,13 @@ class ZoomerOptions
   constructor: (element) ->
     @element = $(element)
 
-    @canvasW = ko.observable('940')
-    @canvasH = ko.observable('500')
-    @startW  = ko.observable('200')
-    @startH  = ko.observable('200')
-    @startX  = ko.observable('')
-    @startY  = ko.observable('')
-    @step    = ko.observable('50')
+    @canvasW = ko.observable('520')
+    @canvasH = ko.observable('260')
+    @startW  = ko.observable('73')
+    @startH  = ko.observable('73')
+    @startX  = ko.observable('223')
+    @startY  = ko.observable('24')
+    @step    = ko.observable('24')
     @image   = ko.observable()
 
     ko.applyBindings(this, @element.get(0))
